@@ -26,7 +26,7 @@ $ rails assets:precompile RAILS_ENV=production
 $ git add -A
 $ git commit -m "init"
 ```
-4. Herokuにデプロイ実行
+4. Herokuにデプロイする
 ```
 $ git push heroku master
 ```
