@@ -32,4 +32,6 @@ RSpec.describe 'タスク管理機能', type: :system do
                 expect(page).to have_content 'task'
             end
         end
+    end
+end
     
