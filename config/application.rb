@@ -5,8 +5,10 @@ Bundler.require(*Rails.groups)
 
 module TodoApp
   class Application < Rails::Application
-     config.load_defaults 6.0
-     config.generators do |g|
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    config.load_defaults 6.0
+    config.generators do |g|
       g.test_framework :rspec,
                        model_specs: true,
                        view_specs: false,
