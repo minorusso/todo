@@ -21,20 +21,25 @@ $ heroku create
 ```
 $ rails assets:precompile RAILS_ENV=production
 ```
-3. コミットする
+3. Heroku buildpackを追加する
+```
+$ heroku buildpacks:set heroku/ruby
+$ heroku buildpacks:add --index 1 heroku/nodejs
+```
+4. コミットする
 ```
 $ git add -A
 $ git commit -m "init"
 ```
-4. Herokuにデプロイする
+5. Herokuにデプロイする
 ```
 $ git push heroku master
 ```
-5. データベースの移行
+6. データベースの移行
 ```
 $ heroku run rails db:migrate
 ```
-6. アプリケーションにアクセス(アプリ名を確認する)
+7. アプリケーションにアクセス(アプリ名を確認する)
 ```
 ($ heroku config)
 $ heroku open
