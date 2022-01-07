@@ -21,6 +21,10 @@
     <%= form.label :time_limit %>
     <%= form.datetime_select :time_limit %>
   </div>
+  <div class="task_completed">
+    <%= form.label :completed %>
+    <%= form.select :completed, Task.completeds.keys, {}, {id: 'task_completed'} %>
+  </div>
   <%= form.submit %>
 <% end %>
 <br>
