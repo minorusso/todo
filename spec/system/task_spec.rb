@@ -11,9 +11,13 @@ RSpec.describe 'タスク管理機能', type: :system do
                 visit new_task_path
                 fill_in 'タイトル', with: 'テストタイトル'
                 fill_in '詳細', with: 'テスト詳細'
+                find("#task_time_limit_1i").find("option[value='2011']").select_option
+                find("#task_time_limit_2i").find("option[value='4']").select_option
+                find("#task_time_limit_3i").find("option[value='1']").select_option
                 click_button '登録する'
                 expect(page).to have_content 'テストタイトル'
                 expect(page).to have_content 'テスト詳細'
+                expect(page).to have_content '2011-04-01'
             end
         end
     end
@@ -30,6 +34,16 @@ RSpec.describe 'タスク管理機能', type: :system do
                 expect(task_list[1]).to have_content 'test_title1'
             end
         end
+        context '終了期限でソートするボタンを押した場合' do
+            it '終了期限が新しいタスクが一番上に表示される' do
+              visit tasks_path
+              click_on '終了期限でソートする'
+              expect(page).to have_content 'タスク一覧'
+              time_limit = all('#dtime_limit')
+              expect(deadline[0]).to have_content '2021-01-01'
+              expect(deadline[1]).to have_content '2011-01-01'
+            end
+          end
     end
     describe '詳細表示機能' do
         context '任意のタスク詳細画面に遷移した場合' do
