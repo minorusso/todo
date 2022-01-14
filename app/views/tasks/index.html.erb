@@ -7,7 +7,7 @@
     <h4>タイトル検索</h4>
     <%= form.text_field :title %>
     <h4>ステータス検索</h4>
-    <%= form.select :completed, options_for_select([[''],['未着手'],['着手中'],['完了']]) %>
+    <%= form.select :completed, Task.completeds.keys.to_a %>
   <% end %>
 <br>
 <table>

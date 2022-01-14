@@ -2,8 +2,8 @@ class Task < ApplicationRecord
   validates :title, presence:true
   validates :details, presence:true
   validates :time_limit, presence: true
-  enum completed: {'未着手': 0, '着手中': 1, '完了': 2}
-  enum priority: {'高':0, '中': 1, '低':2}
+  enum completed: {'選択して下さい':0, '未着手':1, '着手中':2, '完了':3}
+  enum priority: {'選択してください':0 ,'高':1, '中':2, '低':3}
   scope :search_title, -> (count){ where('title LIKE ?', "%#{count}%") }
   scope :search_completed, ->(count){ where(completed: "#{count}") }
   scope :time_limit, ->{all.order(time_limit: "DESC")}
