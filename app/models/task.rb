@@ -9,4 +9,5 @@ class Task < ApplicationRecord
   scope :time_limit, ->{all.order(time_limit: "DESC")}
   scope :created_at, ->{all.order(created_at: "DESC")}
   scope :priority, ->{all.order(priority: "ASC")}
+  paginates_per 5 
 end
