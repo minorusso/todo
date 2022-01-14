@@ -23,8 +23,13 @@
   </div>
   <div class="task_completed">
     <%= form.label :completed %>
-    <%= form.select :completed, Task.completeds.keys, {}, {id: 'task_completed'} %>
+    <%= form.select :completed, Task.completeds.keys.to_a %>
   </div>
+  <div class="task_priority">
+    <%= form.label :priority%>
+    <%= form.select :priority, Task.priorities.keys.to_a %>
+  </div>
+
   <%= form.submit %>
 <% end %>
 <br>

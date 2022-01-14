@@ -1,12 +1,16 @@
 FactoryBot.define do
   factory :task do
-    title { 'test_title1' }
-    details { 'test_details1' }
-    time_limit{'2026-01-01'}
+    title { 'テストタイトル1' }
+    details { 'テスト詳細1' }
+    time_limit{'2021-01-01'}
+    completed{'未着手'}
+    priority{'高'}
   end
   factory :second_task, class: Task do
-    title { 'test_title2' } 
-    details { 'test_details2' }
-    time_limit{'2026-01-01'}
+    title { 'テストタイトル2' } 
+    details { 'テスト詳細2' }
+    time_limit{'2011-01-01'}
+    completed{'完了'}
+    priority{'低'}
   end
 end

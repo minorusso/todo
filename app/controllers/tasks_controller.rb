@@ -3,17 +3,19 @@ class TasksController < ApplicationController
   def index
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:completed].present?
-        @tasks = Task.where('title LIKE ?', "%#{params[:task][:title]}%").where(completed: "#{params[:task][:completed]}")
+        @tasks = Task.search_title(params[:task][:title]).search_completed(params[:task][:completed])
       elsif params[:task][:title].present?
-        @tasks = Task.where('title LIKE ?', "%#{params[:task][:title]}%")
+        @tasks = Task.search_title(params[:task][:title])
       elsif params[:task][:completed].present?
-        @tasks = Task.where(completed: "#{params[:task][:completed]}")
+        @tasks = Task.search_completed(params[:task][:completed])
       end
     else
       if params[:sort_expired] == "true"
-        @tasks = Task.all.order(time_limit: :desc)
-      elsif
-        @tasks = Task.all.order(created_at: :desc)
+        @tasks = Task.time_limit
+      elsif params[:sort_priority] == "true"
+        @tasks = Task.priority
+      else
+        @tasks = Task.created_at
       end
     end
   end
@@ -52,7 +54,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :details, :time_limit, :completed)
+    params.require(:task).permit(:title, :details, :time_limit, :completed, :priority)
   end
 
   def set_task
