@@ -17,6 +17,19 @@
     <%= form.label :details %>
     <%= form.text_field :details %>
   </div>
+  <div class="task_time_limit">
+    <%= form.label :time_limit %>
+    <%= form.datetime_select :time_limit %>
+  </div>
+  <div class="task_completed">
+    <%= form.label :completed %>
+    <%= form.select :completed, Task.completeds.keys.to_a %>
+  </div>
+  <div class="task_priority">
+    <%= form.label :priority%>
+    <%= form.select :priority, Task.priorities.keys.to_a %>
+  </div>
+
   <%= form.submit %>
 <% end %>
 <br>
