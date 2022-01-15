@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
     # before_action :if_not_admin
     skip_before_action :login_required
     def index
-        @users = User.all
+        @users = User.select(:id,:name,:email,:created_at,:updated_at,:admin).includes(:tasks)
     end
     def new
         @user = User.new
