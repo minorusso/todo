@@ -26,13 +26,14 @@
 </table>
 <h4><%= @user.name %>さんのタスク一覧 </h4>
 <% @user.tasks.each do |task|%>
-<h4>タスク名:<%= task.name %></h4>
 <ul>
-    <li>タスク詳細：<%= task.description%></li>
-    <li>更新日時：<%= task.updated_at %></li>
-    <li>ステータス：<%= task.status %></li>
-    <li>優先度：<%= task.priority %></li>
+    <li>タスク名: <%= task.title %></li>
+    <li>タスク詳細: <%= task.details%></li>
+    <li>更新日時: <%= task.updated_at %></li>
+    <li>ステータス: <%= task.completed %></li>
+    <li>優先度: <%= task.priority %></li>
+    <li>作成日時: <%= task.created_at %></li>
+    <li>終了期限: <%= task.time_limit %></li>
 </ul>
-<h6>作成日時：<%= task.created_at %></h6>
-<h6>終了期限：<%= task.deadline %></h6>
+<% end %>
 <%= link_to "登録ユーザー一覧", admin_users_path %> 

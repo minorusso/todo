@@ -1,8 +1,7 @@
 class Admin::UsersController < ApplicationController
-    # before_action :if_not_admin
-    skip_before_action :login_required
+    before_action :if_not_admin
     def index
-        @users = User.select(:id,:name,:email,:created_at,:updated_at,:admin).includes(:tasks)
+        @users = User.select(:id, :name, :email, :created_at, :updated_at, :admin).includes( :tasks)
     end
     def new
         @user = User.new
@@ -36,9 +35,9 @@ class Admin::UsersController < ApplicationController
     end
 
     private
-    # def if_not_admin
-    #     redirect_to root_path unless current_user.admin?
-    # end
+    def if_not_admin
+        redirect_to root_path, notice: '管理者以外はアクセス出来ません!' unless current_user.admin?
+    end
     def user_params 
         params.require(:user).permit(:name, :email, :password, :password_confirmation,:admin)
     end
