@@ -1,21 +1,22 @@
 # README
 
 
-# テーブル定義
-### User
+# モデル定義
+### Userモデル  
+| カラム名 | カラム名 | データ型 | 
 | ------------------ | ---------------- | -------- | 
 | 名前               | name             | string   | 
 | メール             | email            | string   | 
-| パスワード         | password_digest  | string   |
+| パスワード         | password_digest  | string   | 
 | 管理者             | admin            | boolean  |
-
-### Task
+### Taskモデル  
+| カラム名 | カラム名 | データ型 | 
 | ------------------ | ---------------- | -------- | 
-| タスク名           | title            | string   | 
-| タスク詳細         | details          | text     | 
+| タスク名           | title             | string   | 
+| タスク詳細         | details     | text     | 
 | 終了期限           | time_limit        | datetime | 
+| ステータス         | completed           | integer  | 
 | 優先度             | priority         | integer  | 
-| ステータス         | completed         | integer  | 
 
 # Herokuへのデプロイ手順
 
