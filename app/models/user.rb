@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-    before_update :must_exist_last_admin_updating
-    before_destroy :must_exist_last_admin_destroying
     has_many :tasks, dependent: :destroy
     validates :name,  presence: true, length: { maximum: 30 }
     before_validation { email.downcase! }
@@ -8,6 +6,8 @@ class User < ApplicationRecord
                 format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
     has_secure_password
     validates :password, length: { minimum: 6 }
+    before_update :must_exist_last_admin_updating
+    before_destroy :must_exist_last_admin_destroying
 
     def must_exist_last_admin_updating
         if User.where(admin: true).count == 1 && self.admin == false

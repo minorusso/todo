@@ -18,11 +18,11 @@ class Admin::UsersController < ApplicationController
         @user = User.find(params[:id])
     end   
     def update 
-        @user = User.find(params[:id])
+        @user = User.find(params[:id])       
         if @user.update(user_params)
             redirect_to admin_users_path, notice: 'ユーザーを編集しました!'
         else
-            render :edit 
+            render :edit, notice: '再入力してください!'
         end
     end    
     def show
@@ -39,6 +39,6 @@ class Admin::UsersController < ApplicationController
         redirect_to root_path, notice: '管理者以外はアクセス出来ません!' unless current_user.admin?
     end
     def user_params 
-        params.require(:user).permit(:name, :email, :password, :password_confirmation,:admin)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
 end
