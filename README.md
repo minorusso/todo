@@ -2,10 +2,20 @@
 
 
 # テーブル定義
-|Task|
-|------|
-|title :string|
-|details :text|
+### User
+| ------------------ | ---------------- | -------- | 
+| 名前               | name             | string   | 
+| メール             | email            | string   | 
+| パスワード         | password_digest  | string   |
+| 管理者             | admin            | boolean  |
+
+### Task
+| ------------------ | ---------------- | -------- | 
+| タスク名           | title            | string   | 
+| タスク詳細         | details          | text     | 
+| 終了期限           | time_limit        | datetime | 
+| 優先度             | priority         | integer  | 
+| ステータス         | completed         | integer  | 
 
 # Herokuへのデプロイ手順
 
