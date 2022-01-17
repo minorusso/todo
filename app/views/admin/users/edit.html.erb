@@ -1,0 +1,33 @@
+<h1>ユーザー編集</h1>
+<% if @user.errors.any?%>
+  <div id="error_explanation">
+    <ul>
+      <h4><%= @user.errors.full_messages.each do |msg|%></h4>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model:[:admin,@user], local: true) do |form| %>
+<div class="user_name">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</div>
+<div class="user_email">
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+</div>
+<div class="user_password">
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+</div>
+<div class="user_password_confirmation">
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
+</div>
+<div class="user_admin">
+  <%= form.check_box :admin %>
+  <%= form.label :admin %> 
+</div>
+  <%= form.submit "更新する" %>
+<% end %> 

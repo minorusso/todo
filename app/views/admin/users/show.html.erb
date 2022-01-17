@@ -1,0 +1,39 @@
+<h1>ユーザー詳細</h1>
+<%= notice %>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>名前</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>作成日時</th>
+      <td><%= @user.created_at %></td>
+    </tr>
+    <tr>
+      <th>編集日時</th>
+      <td><%= @user.updated_at %></td>
+    </tr>
+    <tr>
+      <th>管理者登録</th>
+      <td><%= @user.admin? ? 'あり': 'なし' %></td>
+    </tr>
+  </tbody>
+</table>
+<h4><%= @user.name %>さんのタスク一覧 </h4>
+<% @user.tasks.each do |task|%>
+<ul>
+    <li>タスク名: <%= task.title %></li>
+    <li>タスク詳細: <%= task.details%></li>
+    <li>更新日時: <%= task.updated_at %></li>
+    <li>ステータス: <%= task.completed %></li>
+    <li>優先度: <%= task.priority %></li>
+    <li>作成日時: <%= task.created_at %></li>
+    <li>終了期限: <%= task.time_limit %></li>
+</ul>
+<% end %>
+<%= link_to "登録ユーザー一覧", admin_users_path %> 

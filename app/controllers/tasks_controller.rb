@@ -3,19 +3,19 @@ class TasksController < ApplicationController
   def index
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:completed].present?
-        @tasks = Task.search_title(params[:task][:title]).search_completed(params[:task][:completed]).page(params[:page])
+        @tasks = current_user.tasks.search_title(params[:task][:title]).search_completed(params[:task][:completed]).page(params[:page])
       elsif params[:task][:title].present?
-        @tasks = Task.search_title(params[:task][:title]).page(params[:page])
+        @tasks = current_user.tasks.search_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:completed].present?
-        @tasks = Task.search_completed(params[:task][:completed]).page(params[:page])
+        @tasks = current_user.tasks.search_completed(params[:task][:completed]).page(params[:page])
       end
     else
       if params[:sort_expired] == "true"
-        @tasks = Task.time_limit.page(params[:page])
+        @tasks = current_user.tasks.time_limit.page(params[:page])
       elsif params[:sort_priority] == "true"
-        @tasks = Task.priority.page(params[:page])
+        @tasks = current_user.tasks.priority.page(params[:page])
       else
-        @tasks = Task.created_at.page(params[:page])
+        @tasks = current_user.tasks.created_at.page(params[:page])
       end
     end
   end
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: "ブログ作成しました!"
     else
@@ -54,7 +54,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :details, :time_limit, :completed, :priority)
+    params.require(:task).permit(:title, :details, :time_limit, :completed, :priority).merge(user_id:current_user.id)
   end
 
   def set_task
