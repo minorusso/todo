@@ -7,6 +7,9 @@
     <%= form.text_field :title %>
     <h4>ステータス検索</h4>
     <%= form.select :completed, Task.completeds.keys.to_a %>
+    <h4>タグ検索</h4>
+    <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+    <%= form.submit 'Search', name: nil %>
   <% end %>
 <br>
 <table>
@@ -29,6 +32,11 @@
     <td><%= link_to "確認する", task_path(task.id) %></td>
     <td><%= link_to "編集する", edit_task_path(task.id)%></td>
     <td><%= link_to "削除する", task_path(task.id),method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td>
+      <% task.labels.each do |label| %>
+        <%= label.name %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
