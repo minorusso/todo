@@ -5,32 +5,43 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# User.create!(
-#     name: 'テストシード',
-#     email: 'test@test.com',
-#     password: 'password',
-#     password_confirmation: 'password'
-# ) 
-# User.create!(
-#     name:  '管理者',
-#     email: 'admin@example.com',
-#     password:  '111111',
-#     password_confirmation: '111111',
-#     admin: true
-# )
+User.create!(
+    name: 'テストシード',
+    email: 'test@test.com',
+    password: 'password',
+    password_confirmation: 'password'
+) 
+User.create!(
+    name:  '管理者',
+    email: 'admin@example.com',
+    password:  '111111',
+    password_confirmation: '111111',
+    admin: true
+)
 
-Label.create!(
-  name:'Ruby'
-)
-Label.create!(
-  name:'Python'
-)
-Label.create!(
-  name:'Rails'
-)
-Label.create!(
-  name:'HTML'
-)
-Label.create!(
-  name:'CSS'
-)
+10.times do |n|
+  User.create(
+    name: "user#{n+1}",
+    email: "user#{n+1}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    admin: false 
+  )
+end
+
+10.times do |n|
+  Task.create(
+    title: "task#{n+1}",
+    details: "details#{n+1}",
+    time_limit: DateTime.now,
+    completed: 0,
+    priority: 0,
+    user_id: 1
+  )
+end
+
+10.times do |n|
+  Label.create(
+    name:"label#{n+1}"
+  )
+end
