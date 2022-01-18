@@ -72,7 +72,7 @@ RSpec.describe 'タスク管理機能', type: :system do
                 visit tasks_path
                 fill_in 'task[title]',with: 'テストタイトル1'
                 select '未着手', from: 'task[completed]'
-                click_on '検索'
+                click_on 'Search'
                 expect(page).to have_content 'テストタイトル1'
             end
         end
@@ -80,7 +80,7 @@ RSpec.describe 'タスク管理機能', type: :system do
             it 'ステータスに完全一致するタスクが絞り込まれる'do 
                 visit tasks_path
                 select '未着手', from: 'task[completed]'
-                click_on '検索'
+                click_on 'Search'
                 expect(page).to have_content '未着手'
             end
         end
@@ -89,7 +89,7 @@ RSpec.describe 'タスク管理機能', type: :system do
                 visit tasks_path
                 fill_in 'task[title]',with:'テストタイトル2'
                 select '完了',from: 'task[completed]'
-                click_on '検索'
+                click_on 'Search'
                 expect(page).to have_content 'テストタイトル'
                 expect(page).to have_content '完了'
             end
