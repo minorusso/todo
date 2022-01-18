@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user 
   has_many :labellings, dependent: :destroy
-  has_many :labels, through: :labellings
+  has_many :labels, through: :labellings, source: :label
   validates :title, presence:true
   validates :details, presence:true
   validates :time_limit, presence: true
@@ -12,5 +12,5 @@ class Task < ApplicationRecord
   scope :time_limit, ->{all.order(time_limit: "DESC")}
   scope :created_at, ->{all.order(created_at: "DESC")}
   scope :priority, ->{all.order(priority: "ASC")}
-  paginates_per 5 
+  paginates_per 10 
 end
